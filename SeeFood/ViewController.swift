@@ -14,6 +14,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var results: UITextView!
+    
     let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -31,11 +33,50 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let image = info[.originalImage] as? UIImage else {
             return
         }
-            imageView.image = image
+        imageView.image = image
+        
+        guard let ciimage = CIImage(image: image) else {
+            fatalError("Could not convert UIImage to CIImage")
+        }
+        
+        detect(image: ciimage)
         
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
+    func detect(image : CIImage) {
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
+            fatalError("Loading CoreML Model Failed.")
+        }
+        
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            guard let results = request.results as? [VNClassificationObservation] else {
+                fatalError("Model failed to process image.")
+            }
+            
+            var text = "Image recognised as follows: \n"
+            for (index, elements) in results.enumerated() {
+                if index < 3 {
+                    let identifier = elements.identifier
+                    let percentage = elements.confidence * 100
+                    
+                    text = text + "\(identifier) \(percentage)% \n"
+                } else {
+                    break
+                }
+            }
+            
+            self.results.text = text
+            
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        do {
+            try handler.perform([request])
+        } catch {
+            print(error)
+        }
+    }
 
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
         

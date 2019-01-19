@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,16 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bfI-bl-WJa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bfI-bl-WJa">
+                                <rect key="frame" x="0.0" y="188" width="414" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="HaA-MF-wsv"/>
+                                </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Dj-MR-bZu">
+                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="VkT-5A-3RC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bfI-bl-WJa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0xb-is-rxA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bfI-bl-WJa" secondAttribute="bottom" id="Peg-l7-QvH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bfI-bl-WJa" secondAttribute="trailing" id="jRE-jL-bO7"/>
-                            <constraint firstItem="bfI-bl-WJa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vh4-iT-8Es"/>
+                            <constraint firstItem="7Dj-MR-bZu" firstAttribute="trailing" secondItem="bfI-bl-WJa" secondAttribute="trailing" id="Kee-JW-wWa"/>
+                            <constraint firstItem="bfI-bl-WJa" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Qcn-wS-C3y"/>
+                            <constraint firstItem="bfI-bl-WJa" firstAttribute="top" secondItem="7Dj-MR-bZu" secondAttribute="bottom" id="Ue9-QO-Fqv"/>
+                            <constraint firstItem="bfI-bl-WJa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wjo-WC-ABF"/>
+                            <constraint firstItem="7Dj-MR-bZu" firstAttribute="leading" secondItem="bfI-bl-WJa" secondAttribute="leading" id="anc-YD-baa"/>
+                            <constraint firstItem="7Dj-MR-bZu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rt7-6d-OVU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -40,11 +53,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="bfI-bl-WJa" id="awd-2Q-x82"/>
+                        <outlet property="results" destination="7Dj-MR-bZu" id="yed-Ti-z5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-603.75" y="-175.35211267605635"/>
+            <point key="canvasLocation" x="-604.34782608695662" y="-175.44642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="znD-y2-3Za">
